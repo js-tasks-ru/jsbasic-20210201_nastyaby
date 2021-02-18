@@ -1,17 +1,5 @@
 let calculator = {
-
-  read: function (a, b) {
-    this.a = a;
-    this.b = b;
-  },
-
-  sum: function (a, b) {
-    return this.a + this.b;
-  },
-
-  mul: function (a, b) {
-    return this.a * this.b;
-  },
+  // ваш код
 };
 
 
