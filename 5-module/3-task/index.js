@@ -10,7 +10,7 @@ function initCarousel() {
   const buttonsDisabling = (width) => {
     if (width === 0) {
       buttonPastSlide.style.display = 'none';
-    } else if (width === 3 * carouselWidth) {
+    } else if (width === (carousel.children.length - 1) * carouselWidth) {
       buttonNextSlide.style.display = 'none';
     } else {
       buttonPastSlide.style.display = 'flex';
