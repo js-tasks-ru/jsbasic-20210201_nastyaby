@@ -19,7 +19,7 @@ export default class ProductCard {
             <button type="button" class="card__button">
                 <img src="../../assets/images/icons/plus-icon.svg" alt="icon"/>
             </button>
-        y</div>
+        </div>
       </div>`);
   }
 
