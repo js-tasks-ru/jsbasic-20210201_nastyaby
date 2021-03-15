@@ -9,7 +9,7 @@ export default class RibbonMenu {
   render() {
     this.elem = createElement(
       `<div class="ribbon">
-                <button class="ribbon__arrow ribbon__arrow_left ribbon__arrow_visible">
+                <button class="ribbon__arrow ribbon__arrow_left">
                     <img src="../../assets/images/icons/angle-icon.svg" alt="icon">
                 </button>
 
@@ -27,6 +27,7 @@ export default class RibbonMenu {
     const ribbonArrowRight = this.elem.querySelector('.ribbon__arrow_right');
     const ribbonArrowLeft = this.elem.querySelector('.ribbon__arrow_left');
     const ribbonInner = this.elem.querySelector('.ribbon__inner');
+    const ribbinItems = this.elem.querySelectorAll('.ribbon__item');
 
     ribbonArrowRight.addEventListener(`click`,
       () => this.arrowRight(ribbonInner));
@@ -34,6 +35,11 @@ export default class RibbonMenu {
       () => this.arrowLeft(ribbonInner));
     ribbonInner.addEventListener('scroll', () =>
       this.hideButtons(ribbonInner, ribbonArrowRight, ribbonArrowLeft));
+
+    ribbinItems.forEach((item, index) => {
+      item.addEventListener(`click`, () =>
+        this.categoryProduct(index));
+    });
   }
 
   arrowRight(ribbonInner) {
@@ -62,7 +68,14 @@ export default class RibbonMenu {
     } else {
       ribbonArrowRight.classList.add('ribbon__arrow_visible');
     }
-
   }
 
+  categoryProduct(i) {
+    const categoryProduct = new CustomEvent('ribbon-select', {
+      detail: this.categories[i].id,
+      bubbles: true,
+    });
+
+    this.elem.dispatchEvent(categoryProduct);
+  }
 }
