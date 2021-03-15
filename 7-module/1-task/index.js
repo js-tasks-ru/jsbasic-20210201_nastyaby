@@ -32,6 +32,8 @@ export default class RibbonMenu {
       () => this.arrowRight(ribbonInner));
     ribbonArrowLeft.addEventListener(`click`,
       () => this.arrowLeft(ribbonInner));
+    ribbonInner.addEventListener('scroll', () =>
+      this.hideButtons(ribbonInner, ribbonArrowRight, ribbonArrowLeft));
   }
 
   arrowRight(ribbonInner) {
@@ -40,6 +42,27 @@ export default class RibbonMenu {
 
   arrowLeft(ribbonInner) {
     ribbonInner.scrollBy(-350, 0);
+  }
+
+  hideButtons(ribbonInner, ribbonArrowRight, ribbonArrowLeft) {
+    const scrollWidth = ribbonInner.scrollWidth;
+    const scrollLeft = ribbonInner.scrollLeft;
+    const clientWidth = ribbonInner.clientWidth;
+
+    const scrollRight = scrollWidth - scrollLeft - clientWidth;
+
+    if (scrollLeft > 0) {
+      ribbonArrowLeft.classList.add('ribbon__arrow_visible');
+    } else {
+      ribbonArrowLeft.classList.remove('ribbon__arrow_visible');
+    }
+
+    if (scrollRight < 1) {
+      ribbonArrowRight.classList.remove('ribbon__arrow_visible');
+    } else {
+      ribbonArrowRight.classList.add('ribbon__arrow_visible');
+    }
+
   }
 
 }
